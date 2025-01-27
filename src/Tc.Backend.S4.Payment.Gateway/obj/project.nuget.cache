@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "dgSpecHash": "UsDUUbZsllI=",
+  "success": true,
+  "projectFilePath": "C:\\Projetos\\Fiap\\tc-backend-s4-payment-gateway\\Tc.Backend.S4.Payment.Gateway\\Tc.Backend.S4.Payment.Gateway\\Tc.Backend.S4.Payment.Gateway.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jc_md\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
+    "C:\\Users\\jc_md\\.nuget\\packages\\fluentvalidation\\11.11.0\\fluentvalidation.11.11.0.nupkg.sha512",
+    "C:\\Users\\jc_md\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.11.0\\fluentvalidation.dependencyinjectionextensions.11.11.0.nupkg.sha512",
+    "C:\\Users\\jc_md\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.1\\microsoft.aspnetcore.openapi.9.0.1.nupkg.sha512",
+    "C:\\Users\\jc_md\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\2.1.0\\microsoft.extensions.dependencyinjection.abstractions.2.1.0.nupkg.sha512",
+    "C:\\Users\\jc_md\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\2.0.0\\microsoft.extensions.logging.abstractions.2.0.0.nupkg.sha512",
+    "C:\\Users\\jc_md\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "C:\\Users\\jc_md\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512",
+    "C:\\Users\\jc_md\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
+    "C:\\Users\\jc_md\\.nuget\\packages\\mongodb.bson\\3.1.0\\mongodb.bson.3.1.0.nupkg.sha512",
+    "C:\\Users\\jc_md\\.nuget\\packages\\mongodb.driver\\3.1.0\\mongodb.driver.3.1.0.nupkg.sha512",
+    "C:\\Users\\jc_md\\.nuget\\packages\\scalar.aspnetcore\\2.0.4\\scalar.aspnetcore.2.0.4.nupkg.sha512",
+    "C:\\Users\\jc_md\\.nuget\\packages\\sharpcompress\\0.30.1\\sharpcompress.0.30.1.nupkg.sha512",
+    "C:\\Users\\jc_md\\.nuget\\packages\\snappier\\1.0.0\\snappier.1.0.0.nupkg.sha512",
+    "C:\\Users\\jc_md\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
+    "C:\\Users\\jc_md\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
+    "C:\\Users\\jc_md\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
+    "C:\\Users\\jc_md\\.nuget\\packages\\system.security.accesscontrol\\5.0.0\\system.security.accesscontrol.5.0.0.nupkg.sha512",
+    "C:\\Users\\jc_md\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
+    "C:\\Users\\jc_md\\.nuget\\packages\\zstdsharp.port\\0.7.3\\zstdsharp.port.0.7.3.nupkg.sha512"
+  ],
+  "logs": []
+}

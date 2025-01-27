@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "Tc.Backend.S4.Payment.Gateway": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:8080/swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:8081;http://localhost:8080",
+      "dotnetRunMessages": true
+    }
+  }
+}

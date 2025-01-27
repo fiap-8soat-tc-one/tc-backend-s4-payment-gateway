@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Tc.Backend.S4.Payment.Gateway.props" />
+</Project>
