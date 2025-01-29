@@ -21,7 +21,8 @@ public sealed class OrderPaymentRepository : IOrderPaymentRepository
 
     public async Task AddOrUpdateAsync(OrderPayment entity, CancellationToken cancellationToken)
     {
-        await _collection.ReplaceOneAsync(x => x.Transaction.Number == entity.Transaction.Number, entity, new ReplaceOptions { IsUpsert = true }, cancellationToken);
+        await _collection.ReplaceOneAsync(x => x.Transaction.Number == entity.Transaction.Number, entity,
+            new ReplaceOptions { IsUpsert = true }, cancellationToken);
     }
 
     public async Task<OrderPayment?> GetByTransactionNumberAsync(string number, CancellationToken cancellationToken)

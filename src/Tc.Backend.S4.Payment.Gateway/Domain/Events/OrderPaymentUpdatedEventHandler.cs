@@ -46,7 +46,8 @@ public class OrderPaymentUpdatedEventHandler(IConnectionFactory busFactory) : IO
         {
             ContentType = "application/json",
             DeliveryMode = DeliveryModes.Persistent,
-            Headers = new Dictionary<string, object>  { { "tracking_id", $"order-payment-queue-id-{@event.TransactionNumber}" } }!
+            Headers = new Dictionary<string, object>
+                { { "tracking_id", $"order-payment-queue-id-{@event.TransactionNumber}" } }!
         };
     }
 }
