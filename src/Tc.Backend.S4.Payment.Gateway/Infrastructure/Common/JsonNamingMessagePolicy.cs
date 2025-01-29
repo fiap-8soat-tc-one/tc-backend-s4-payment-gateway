@@ -5,7 +5,7 @@ namespace Tc.Backend.S4.Payment.Gateway.Infrastructure.Common;
 
 public class JsonNamingMessagePolicy : JsonNamingPolicy
 {
-    public static JsonSerializerOptions JsonOptions = new()
+    public static readonly JsonSerializerOptions JsonOptions = new()
     {
         PropertyNamingPolicy = SnakeCaseLower,
         Converters =

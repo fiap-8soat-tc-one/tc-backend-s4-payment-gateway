@@ -26,14 +26,14 @@ public class OrderPaymentCreatedConsumerHandler(IOrderPaymentRepository reposito
     };
 
 
-    protected override async Task ExecuteAsync(CancellationToken cancellationToken)
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        while (!cancellationToken.IsCancellationRequested)
+        while (!stoppingToken.IsCancellationRequested)
         {
-            await using var busConnection = await busFactory.CreateConnectionAsync(cancellationToken);
-            await using var channel = await busConnection.CreateChannelAsync(cancellationToken: cancellationToken);
+            await using var busConnection = await busFactory.CreateConnectionAsync(stoppingToken);
+            await using var channel = await busConnection.CreateChannelAsync(cancellationToken: stoppingToken);
             await channel.QueueDeclareAsync(QueueName, Durable, Exclusive, AutoDelete, _arguments,
-                cancellationToken: cancellationToken);
+                cancellationToken: stoppingToken);
 
             var consumer = new AsyncEventingBasicConsumer(channel);
 
@@ -46,13 +46,13 @@ public class OrderPaymentCreatedConsumerHandler(IOrderPaymentRepository reposito
                 {
                     var transaction = new PaymentTransaction(transactionNumber, string.Empty, string.Empty);
                     var orderPayment = new OrderPayment(transaction, PaymentType.Undefined, PaymentStatus.Waiting, 0);
-                    await repository.AddOrUpdateAsync(orderPayment, cancellationToken);
+                    await repository.AddOrUpdateAsync(orderPayment, stoppingToken);
                 }
             };
 
-            await channel.BasicConsumeAsync(QueueName, AutoAck, consumer, cancellationToken);
+            await channel.BasicConsumeAsync(QueueName, AutoAck, consumer, stoppingToken);
 
-            await Task.Delay(1000, cancellationToken);
+            await Task.Delay(1000, stoppingToken);
         }
     }
 }

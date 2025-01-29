@@ -15,4 +15,4 @@ var app = builder.Build();
 app.MapCarter();
 app.MapOpenApiWithScalarReference();
 
-app.Run();
+await app.RunAsync();

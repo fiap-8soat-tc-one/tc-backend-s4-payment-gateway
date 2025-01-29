@@ -31,7 +31,7 @@ public class OrderPaymentUpdatedEventHandler(IConnectionFactory busFactory) : IO
         await channel.BasicPublishAsync(ExchangeName, RoutingKey, Mandatory, props, body, cancellationToken);
     }
 
-    private string MapMessageBody(OrderPaymentUpdatedEvent @event)
+    private static string MapMessageBody(OrderPaymentUpdatedEvent @event)
     {
         return JsonSerializer.Serialize(new
         {
