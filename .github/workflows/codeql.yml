@@ -21,10 +21,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - language: java-kotlin
-            build-mode: none
-          - language: javascript-typescript
-            build-mode: none
           - language: csharp
             build-mode: autobuild  # CodeQL precisa compilar o projeto
 
@@ -48,7 +44,9 @@ jobs:
       # Se for .NET, garantir que o build seja bem-sucedido
       - if: matrix.language == 'csharp'
         name: Build .NET project
-        run: dotnet build --configuration Release
+        run: | 
+          cd src
+          dotnet build --configuration Release
 
       - if: matrix.build-mode == 'manual'
         shell: bash
