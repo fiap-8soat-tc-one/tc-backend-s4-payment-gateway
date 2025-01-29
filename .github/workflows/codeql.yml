@@ -25,21 +25,39 @@ jobs:
             build-mode: none
           - language: javascript-typescript
             build-mode: none
+          - language: csharp
+            build-mode: autobuild  # CodeQL precisa compilar o projeto
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      # Setup .NET SDK para builds do .NET
+      - if: matrix.language == 'csharp'
+        name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '9.0.x'  # Ajuste para a versão necessária
+
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
           languages: ${{ matrix.language }}
           build-mode: ${{ matrix.build-mode }}
+
+      # Se for .NET, garantir que o build seja bem-sucedido
+      - if: matrix.language == 'csharp'
+        name: Build .NET project
+        run: dotnet build --configuration Release
+
       - if: matrix.build-mode == 'manual'
         shell: bash
         run: |
           echo '  make bootstrap'
           echo '  make release'
           exit 1
+
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
         with:
-          category: "/language:${{matrix.language}}"
+          category: "/language:${{ matrix.language }}"
