@@ -4,11 +4,11 @@
     "Tc.Backend.S4.Payment.Gateway": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:8080/swagger",
+      "launchUrl": "http://localhost:8070/swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:8081;http://localhost:8080",
+      "applicationUrl": "https://localhost:8071;http://localhost:8070",
       "dotnetRunMessages": true
     }
   }

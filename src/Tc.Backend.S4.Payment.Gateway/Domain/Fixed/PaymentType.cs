@@ -4,5 +4,6 @@ public enum PaymentType
 {
     Debit,
     Credit,
-    Pix
+    Pix,
+    Undefined = 99
 }
