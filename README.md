@@ -4,7 +4,7 @@
 [![Publish Docker image](https://github.com/fiap-8soat-tc-one/tc-backend-s4-payment-gateway/actions/workflows/github-pipeline.yml/badge.svg)](https://github.com/fiap-8soat-tc-one/tc-backend-s4-payment-gateway/actions/workflows/github-pipeline.yml)
 [![SonarQube Cloud](https://github.com/fiap-8soat-tc-one/tc-backend-s4-payment-gateway/actions/workflows/sonarcloud.yml/badge.svg)](https://github.com/fiap-8soat-tc-one/tc-backend-s4-payment-gateway/actions/workflows/sonarcloud.yml)
 
-## Responsábilidade :triangular_flag_on_post:
+## Responsabilidade :triangular_flag_on_post:
 
 Este microsserviço tem a responsábilidade de receber o evento (menssageria via rabitmq) de pedido realizado, para iniciar o fluxo de pagamentos.
 Após a criação do registro inicial de pagamentos, o microsserviço aguarda o recebimento do webhook realizado pelo gateway de pagamentos parceiro para atualização das informações e status.
