@@ -1,4 +1,4 @@
-# Tech Challenge - Microsserviço de Pagamentos
+# Tech Challenge - Fase 4: Microsserviço de Pagamentos
 
 [![CodeQL Advanced](https://github.com/fiap-8soat-tc-one/tc-backend-s4-payment-gateway/actions/workflows/codeql.yml/badge.svg)](https://github.com/fiap-8soat-tc-one/tc-backend-s4-payment-gateway/actions/workflows/codeql.yml)
 [![Publish Docker image](https://github.com/fiap-8soat-tc-one/tc-backend-s4-payment-gateway/actions/workflows/github-pipeline.yml/badge.svg)](https://github.com/fiap-8soat-tc-one/tc-backend-s4-payment-gateway/actions/workflows/github-pipeline.yml)
@@ -6,7 +6,7 @@
 
 ## Responsabilidade :triangular_flag_on_post:
 
-Este microsserviço tem a responsábilidade de receber o evento (menssageria via rabitmq) de pedido realizado, para iniciar o fluxo de pagamentos.
+Este microsserviço tem a responsabilidade de receber o evento (menssageria via rabitmq) de pedido realizado, para iniciar o fluxo de pagamentos.
 Após a criação do registro inicial de pagamentos, o microsserviço aguarda o recebimento do webhook realizado pelo gateway de pagamentos parceiro para atualização das informações e status.
 
 ## Equipe :construction_worker:
@@ -39,7 +39,6 @@ sequenceDiagram
 ---
 
 [Clique aqui para ser redirecionado para a documentação das APIs dos microsserviços e suas funcionalidades](https://documenter.getpostman.com/view/37556926/2sA3s1oXsw)
-
 
 ## Desenho de Arquitetura/Infraestrutura  proposto  :heavy_check_mark:
 
