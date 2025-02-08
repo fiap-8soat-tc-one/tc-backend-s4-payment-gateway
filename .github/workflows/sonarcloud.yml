@@ -35,7 +35,7 @@ jobs:
 
       - name: Install SonarQube Scanner for .NET
         run: | 
-          cd src/  
+          cd src  
           dotnet tool install --global dotnet-sonarscanner
 
       - name: Begin SonarQube analysis
@@ -44,7 +44,13 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           cd src
-          dotnet-sonarscanner begin /k:"fiap-8soat-tc-one_tc-backend-s4-payment-gateway" /o:"fiap-8soat-tc-one" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+          dotnet-sonarscanner begin \
+            /k:"fiap-8soat-tc-one_tc-backend-s4-payment-gateway" \
+            /o:"fiap-8soat-tc-one" \
+            /d:sonar.token="${{ secrets.SONAR_TOKEN }}" \
+            /d:sonar.host.url="https://sonarcloud.io" \
+            /d:sonar.cs.coveragePlugin=cobertura \
+            /d:sonar.coverageReportPaths=./TestResults/coverage/coverage.cobertura.xml
 
       - name: Restore dependencies
         run: |
@@ -56,12 +62,15 @@ jobs:
           cd src
           dotnet build --configuration Release --no-restore
 
-      - name: Run tests
+      - name: Run tests with code coverage
         run: |
           cd src
-          dotnet tool install dotnet-reportgenerator-globaltool  --tool-path ./tools
-          dotnet test --configuration Release  --nologo --results-directory ./TestResults --logger "trx;LogFileName=test_results.xml" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=./TestResults/coverage/
-          ./tools/reportgenerator "-reports:./TestResults/test_results.xml" "-targetdir:./TestResults/coverage/reports" "-reporttypes:HTMLInline;HTMLChart" 
+          dotnet tool install dotnet-reportgenerator-globaltool --tool-path ./tools
+          dotnet test --configuration Release --nologo --results-directory ./TestResults --logger "trx;LogFileName=test_results.xml" \
+            /p:CollectCoverage=true \
+            /p:CoverletOutputFormat=cobertura \
+            /p:CoverletOutput=./TestResults/coverage/coverage.cobertura.xml
+          ./tools/reportgenerator "-reports:./TestResults/coverage/coverage.cobertura.xml" "-targetdir:./TestResults/coverage/reports" "-reporttypes:HTMLInline;HTMLChart"
 
       - name: Complete SonarQube analysis
         env:
