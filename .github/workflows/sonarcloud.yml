@@ -59,7 +59,7 @@ jobs:
       - name: Run tests
         run: |
           cd src
-          dotnet test --configuration Release --no-restore --no-build --logger trx --results-directory TestResults
+          dotnet test --configuration Release --no-restore --no-build --logger trx --results-directory TestResults /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=TestResults/coverage.opencover.xml
 
       - name: Complete SonarQube analysis
         env:
