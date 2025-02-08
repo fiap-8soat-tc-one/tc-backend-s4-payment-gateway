@@ -59,7 +59,9 @@ jobs:
       - name: Run tests
         run: |
           cd src
-          dotnet test --configuration Release --no-restore --no-build --logger trx --results-directory TestResults /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=TestResults/coverage.opencover.xml
+          dotnet tool install dotnet-reportgenerator-globaltool  --tool-path /tools
+          dotnet test --configuration Release  --nologo --results-directory ./TestResults --logger "trx;LogFileName=test_results.xml" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=./TestResults/coverage/
+          /tools/reportgenerator "-reports:./TestResults/test_results.xml" "-targetdir:./TestResults/coverage/reports" "-reporttypes:HTMLInline;HTMLChart" 
 
       - name: Complete SonarQube analysis
         env:
