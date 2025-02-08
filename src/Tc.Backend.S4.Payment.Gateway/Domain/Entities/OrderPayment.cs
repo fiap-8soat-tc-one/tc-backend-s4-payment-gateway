@@ -7,7 +7,9 @@ namespace Tc.Backend.S4.Payment.Gateway.Domain.Entities;
 
 public class OrderPayment
 {
-    public OrderPayment() { }
+    public OrderPayment()
+    {
+    }
 
     public OrderPayment(PaymentTransaction transaction, PaymentType type, PaymentStatus status, decimal amount)
     {
@@ -22,9 +24,9 @@ public class OrderPayment
 
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
-    public  string Id { get; private set; }
+    public string Id { get; private set; }
 
-    public  PaymentTransaction Transaction { get; private set; }
+    public PaymentTransaction Transaction { get; private set; }
 
     public PaymentStatus Status { get; private set; }
 

@@ -1,7 +1,7 @@
 using FluentValidation;
-using Tc.Backend.S4.Payment.Gateway.Presentation.Requests;
+using Tc.Backend.S4.Payment.Gateway.Infrastructure.Presentation.Requests;
 
-namespace Tc.Backend.S4.Payment.Gateway.Presentation.Validators;
+namespace Tc.Backend.S4.Payment.Gateway.Infrastructure.Presentation.Validators;
 
 public class OrderPaymentRequestValidator : AbstractValidator<OrderPaymentRequest>
 {

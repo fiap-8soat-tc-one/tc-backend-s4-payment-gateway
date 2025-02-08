@@ -1,12 +1,14 @@
+using System.Diagnostics.CodeAnalysis;
 using Carter;
 using FluentValidation;
 using Tc.Backend.S4.Payment.Gateway.Domain.Contracts;
-using Tc.Backend.S4.Payment.Gateway.Presentation.Requests;
+using Tc.Backend.S4.Payment.Gateway.Infrastructure.Presentation.Requests;
 
 namespace Tc.Backend.S4.Payment.Gateway.Infrastructure.Presentation.Controllers;
 
 public class OrderPaymentController : ICarterModule
 {
+    [ExcludeFromCodeCoverage]
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         app.MapPost("api/public/v1/hook/orders/payments", async (

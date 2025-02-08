@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using FluentValidation;
@@ -16,6 +17,7 @@ using Tc.Backend.S4.Payment.Gateway.Infrastructure.Persistence;
 
 namespace Tc.Backend.S4.Payment.Gateway;
 
+[ExcludeFromCodeCoverage]
 public static class Bootstrapper
 {
     private static readonly List<IConvention> DefaultConventions =

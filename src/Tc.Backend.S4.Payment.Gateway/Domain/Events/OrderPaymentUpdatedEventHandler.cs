@@ -17,17 +17,12 @@ public class OrderPaymentUpdatedEventHandler(IConnectionFactory busFactory) : IO
     public async Task HandleAsync(OrderPaymentUpdatedEvent @event, CancellationToken cancellationToken)
     {
         await using var busConnection = await busFactory.CreateConnectionAsync(cancellationToken);
-
         await using var channel = await busConnection.CreateChannelAsync(cancellationToken: cancellationToken);
-
         await channel.ExchangeDeclareAsync(ExchangeName, ExchangeType, Durable, cancellationToken: cancellationToken);
 
         var message = MapMessageBody(@event);
-
         var body = Encoding.UTF8.GetBytes(message);
-
         var props = MapBasicProperties(@event);
-
         await channel.BasicPublishAsync(ExchangeName, RoutingKey, Mandatory, props, body, cancellationToken);
     }
 

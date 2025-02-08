@@ -1,8 +1,8 @@
 using Tc.Backend.S4.Payment.Gateway.Domain.Fixed;
 
-namespace Tc.Backend.S4.Payment.Gateway.Presentation.Requests;
+namespace Tc.Backend.S4.Payment.Gateway.Infrastructure.Presentation.Requests;
 
-public record OrderPaymentRequest(
+public sealed record OrderPaymentRequest(
     PaymentType PaymentType,
     PaymentStatus PaymentStatus,
     decimal Total,

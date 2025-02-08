@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Text.Json;
 using RabbitMQ.Client;
@@ -9,6 +10,7 @@ using Tc.Backend.S4.Payment.Gateway.Domain.ValueObjects;
 
 namespace Tc.Backend.S4.Payment.Gateway.Infrastructure.Presentation.Workers;
 
+[ExcludeFromCodeCoverage]
 public class OrderPaymentCreatedConsumerHandler(IOrderPaymentRepository repository, IConnectionFactory busFactory)
     : BackgroundService
 {

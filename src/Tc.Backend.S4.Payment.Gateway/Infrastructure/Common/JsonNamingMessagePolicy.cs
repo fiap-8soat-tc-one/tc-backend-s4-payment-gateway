@@ -3,6 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace Tc.Backend.S4.Payment.Gateway.Infrastructure.Common;
 
+[ExcludeFromDescription]
 public class JsonNamingMessagePolicy : JsonNamingPolicy
 {
     public static readonly JsonSerializerOptions JsonOptions = new()

@@ -1,4 +1,4 @@
-using Tc.Backend.S4.Payment.Gateway.Presentation.Requests;
+using Tc.Backend.S4.Payment.Gateway.Infrastructure.Presentation.Requests;
 
 namespace Tc.Backend.S4.Payment.Gateway.Domain.Contracts;
 

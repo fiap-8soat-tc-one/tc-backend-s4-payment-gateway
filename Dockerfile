@@ -12,6 +12,7 @@ WORKDIR /src
 COPY src/ *.sln ./
 COPY src/*.config ./
 COPY src/Tc.Backend.S4.Payment.Gateway/*.csproj ./src/Tc.Backend.S4.Payment.Gateway/
+COPY ../test/Tc.Backend.S4.Payment.Gateway.Tests/*.csproj ../test/Tc.Backend.S4.Payment.Gateway.Tests/
 RUN dotnet restore
 COPY . .
 RUN dotnet build -c $BUILD_CONFIGURATION -o /app/build

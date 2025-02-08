@@ -1,7 +1,7 @@
 using Tc.Backend.S4.Payment.Gateway.Domain.Contracts;
 using Tc.Backend.S4.Payment.Gateway.Domain.Events;
 using Tc.Backend.S4.Payment.Gateway.Domain.ValueObjects;
-using Tc.Backend.S4.Payment.Gateway.Presentation.Requests;
+using Tc.Backend.S4.Payment.Gateway.Infrastructure.Presentation.Requests;
 
 namespace Tc.Backend.S4.Payment.Gateway.Application.UseCases;
 
