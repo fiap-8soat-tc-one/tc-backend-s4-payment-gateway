@@ -50,7 +50,7 @@ jobs:
             /d:sonar.token="${{ secrets.SONAR_TOKEN }}" \
             /d:sonar.host.url="https://sonarcloud.io" \
             /d:sonar.cs.coveragePlugin=cobertura \
-            /d:sonar.coverageReportPaths=./TestResults/coverage/coverage.cobertura.xml
+            /d:sonar.coverageReportPaths=../test/Tc.Backend.S4.Payment.Gateway.Tests/TestResults/**/coverage.cobertura.xml
 
       - name: Restore dependencies
         run: |
