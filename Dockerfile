@@ -11,6 +11,7 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY src/ *.sln ./
 COPY src/*.config ./
+COPY src/*.runsettings ./
 COPY src/Tc.Backend.S4.Payment.Gateway/*.csproj ./src/Tc.Backend.S4.Payment.Gateway/
 COPY ../test/Tc.Backend.S4.Payment.Gateway.Tests/*.csproj ../test/Tc.Backend.S4.Payment.Gateway.Tests/
 RUN dotnet restore
