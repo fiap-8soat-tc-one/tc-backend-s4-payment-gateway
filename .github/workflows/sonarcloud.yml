@@ -4,16 +4,16 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    types: [opened, synchronize, reopened]
-  workflow_dispatch:
+  # pull_request:
+  #   types: [opened, synchronize, reopened]
+  # workflow_dispatch:
 
 jobs:
   build:
     name: Build and analyze
     runs-on: ubuntu-latest
-    environment:
-      name: staging
+    # environment:
+    #   name: staging
 
     steps:
       - name: Checkout repository
@@ -69,10 +69,12 @@ jobs:
           dotnet test --configuration Release --nologo --collect:"XPlat Code Coverage"
           ./tools/reportgenerator "-reports:../test/Tc.Backend.S4.Payment.Gateway.Tests/TestResults/**/coverage.cobertura.xml" "-targetdir:../test/Tc.Backend.S4.Payment.Gateway.Tests/TestResults/coverage/reports" "-reporttypes:HTMLInline;HTMLChart"
           mv ../test/Tc.Backend.S4.Payment.Gateway.Tests/TestResults/**/coverage.cobertura.xml ../test/Tc.Backend.S4.Payment.Gateway.Tests/TestResults/coverage/coverage.cobertura.xml
-
+          cd ..
+          cd test/Tc.Backend.S4.Payment.Gateway.Tests/TestResults/coverage/
+          ls -la
       - name: Complete SonarQube analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           cd src 
-          dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+          dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}" 
