@@ -66,11 +66,8 @@ jobs:
         run: |
           cd src
           dotnet tool install dotnet-reportgenerator-globaltool --tool-path ./tools
-          dotnet test --configuration Release --nologo --results-directory ./TestResults --logger "trx;LogFileName=test_results.xml" \
-            /p:CollectCoverage=true \
-            /p:CoverletOutputFormat=cobertura \
-            /p:CoverletOutput=./TestResults/coverage/coverage.cobertura.xml
-          ./tools/reportgenerator "-reports:./TestResults/test_results.xml" "-targetdir:./TestResults/coverage/reports" "-reporttypes:HTMLInline;HTMLChart"
+          dotnet test --configuration Release --nologo --collect:"XPlat Code Coverage"
+          ./tools/reportgenerator "-reports:../test/Tc.Backend.S4.Payment.Gateway.Tests/TestResults/**/coverage.cobertura.xml" "-targetdir:../test/Tc.Backend.S4.Payment.Gateway.Tests/TestResults/coverage/reports" "-reporttypes:HTMLInline;HTMLChart"
 
       - name: Complete SonarQube analysis
         env:
