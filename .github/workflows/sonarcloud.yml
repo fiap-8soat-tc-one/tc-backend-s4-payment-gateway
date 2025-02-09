@@ -50,7 +50,7 @@ jobs:
             /d:sonar.token="${{ secrets.SONAR_TOKEN }}" \
             /d:sonar.host.url="https://sonarcloud.io" \
             /d:sonar.cs.coveragePlugin=cobertura \
-            /d:sonar.coverageReportPaths=../test/Tc.Backend.S4.Payment.Gateway.Tests/TestResults/**/coverage.cobertura.xml
+            /d:sonar.coverageReportPaths=../test/Tc.Backend.S4.Payment.Gateway.Tests/TestResults/coverage/coverage.cobertura.xml
 
       - name: Restore dependencies
         run: |
@@ -68,6 +68,7 @@ jobs:
           dotnet tool install dotnet-reportgenerator-globaltool --tool-path ./tools
           dotnet test --configuration Release --nologo --collect:"XPlat Code Coverage"
           ./tools/reportgenerator "-reports:../test/Tc.Backend.S4.Payment.Gateway.Tests/TestResults/**/coverage.cobertura.xml" "-targetdir:../test/Tc.Backend.S4.Payment.Gateway.Tests/TestResults/coverage/reports" "-reporttypes:HTMLInline;HTMLChart"
+          mv ../test/Tc.Backend.S4.Payment.Gateway.Tests/TestResults/**/coverage.cobertura.xml ../test/Tc.Backend.S4.Payment.Gateway.Tests/TestResults/coverage/coverage.cobertura.xml
 
       - name: Complete SonarQube analysis
         env:
