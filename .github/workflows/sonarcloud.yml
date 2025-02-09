@@ -4,16 +4,11 @@ on:
   push:
     branches:
       - main
-  # pull_request:
-  #   types: [opened, synchronize, reopened]
-  # workflow_dispatch:
 
 jobs:
   build:
     name: Build and analyze
     runs-on: ubuntu-latest
-    # environment:
-    #   name: staging
 
     steps:
       - name: Checkout repository
@@ -50,7 +45,7 @@ jobs:
             /d:sonar.token="${{ secrets.SONAR_TOKEN }}" \
             /d:sonar.host.url="https://sonarcloud.io" \
             /d:sonar.cs.coveragePlugin=cobertura \
-            /d:sonar.coverageReportPaths=../test/Tc.Backend.S4.Payment.Gateway.Tests/TestResults/coverage/coverage.cobertura.xml
+            /d:sonar.coverageReportPaths="../test/Tc.Backend.S4.Payment.Gateway.Tests/TestResults/coverage/coverage.cobertura.xml"
 
       - name: Restore dependencies
         run: |
@@ -66,15 +61,32 @@ jobs:
         run: |
           cd src
           dotnet tool install dotnet-reportgenerator-globaltool --tool-path ./tools
+
+          # Executa os testes e coleta a cobertura
           dotnet test --configuration Release --nologo --collect:"XPlat Code Coverage"
-          ./tools/reportgenerator "-reports:../test/Tc.Backend.S4.Payment.Gateway.Tests/TestResults/**/coverage.cobertura.xml" "-targetdir:../test/Tc.Backend.S4.Payment.Gateway.Tests/TestResults/coverage/reports" "-reporttypes:HTMLInline;HTMLChart"
-          mv ../test/Tc.Backend.S4.Payment.Gateway.Tests/TestResults/**/coverage.cobertura.xml ../test/Tc.Backend.S4.Payment.Gateway.Tests/TestResults/coverage/coverage.cobertura.xml
-          cd ..
-          cd test/Tc.Backend.S4.Payment.Gateway.Tests/TestResults/coverage/
-          ls -la
+
+          # Encontra o arquivo de cobertura gerado
+          COVERAGE_FILE=$(find ../test/Tc.Backend.S4.Payment.Gateway.Tests/TestResults -type f -name 'coverage.cobertura.xml' | head -n 1)
+
+          # Verifica se o arquivo foi encontrado
+          if [ -z "$COVERAGE_FILE" ]; then
+            echo "Arquivo de cobertura não encontrado!"
+            exit 1
+          fi
+
+          # Cria o diretório de cobertura e move o arquivo
+          mkdir -p ../test/Tc.Backend.S4.Payment.Gateway.Tests/TestResults/coverage
+          mv "$COVERAGE_FILE" ../test/Tc.Backend.S4.Payment.Gateway.Tests/TestResults/coverage/coverage.cobertura.xml
+
+          # Gera o relatório de cobertura
+          ./tools/reportgenerator \
+            "-reports:../test/Tc.Backend.S4.Payment.Gateway.Tests/TestResults/coverage/coverage.cobertura.xml" \
+            "-targetdir:../test/Tc.Backend.S4.Payment.Gateway.Tests/TestResults/coverage/reports" \
+            "-reporttypes:HTMLInline;HTMLChart"
+
       - name: Complete SonarQube analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           cd src 
-          dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}" 
+          dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
