@@ -30,7 +30,7 @@ public class OrderPaymentUpdatedEventHandler(IConnectionFactory busFactory) : IO
     {
         return JsonSerializer.Serialize(new
         {
-            CreationDate = DateTime.Now,
+            CreationDate = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.fff"),
             Content = new[] { @event }
         }, JsonNamingMessagePolicy.JsonOptions);
     }
